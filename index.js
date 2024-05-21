@@ -1,12 +1,9 @@
 const {EventEmitter} = require('events');
-const {readFile, readFileSync} = require('fs');
+const {readFile} = require('fs');
 
 const eventEmitter = new EventEmitter();
 
-const txt = readFileSync("./hello.txt", "utf8");
-
-console.log(txt);
-
+// The call back is run only after the text file is read
 readFile("./hello.txt", "utf8", (err, data) => {
     console.log(data);
 })
