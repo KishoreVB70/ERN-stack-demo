@@ -5,8 +5,15 @@ const {readFile} = require('fs').promises;
 
 const eventEmitter = new EventEmitter();
 const app = express();
-app.get("/", () => {
-    
+app.get("/", (req, res) => {
+    readFile("./home.html", "utf8",  (err, data) => {
+        if (err) {
+            // 500 is server error
+            res.status(500).send("Out of order");
+        }
+        res.send(data);
+    })
+
 })
 // The call back is run only after the text file is read
 // readFile("./hello.txt", "utf8", (err, data) => {
